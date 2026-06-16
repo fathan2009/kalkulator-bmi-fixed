@@ -1,0 +1,378 @@
+/* Variabel CSS untuk warna */
+:root {
+    --bg-color: #F8FAFC;
+    --primary-color: #2563EB;
+    --secondary-color: #14B8A6;
+    --accent-color: #F97316;
+    --text-color-dark: #333;
+    --text-color-light: #fefefe;
+    --card-bg: #FFFFFF;
+    --shadow-light: rgba(0, 0, 0, 0.05);
+    --border-radius-card: 16px;
+}
+
+/* Reset dasar dan gaya body */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color-dark);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Penataan umum container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    width: 100%;
+}
+
+/* Header */
+header {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px var(--shadow-light);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Agar responsif */
+}
+
+header .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-right: 1rem;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    flex-grow: 1; /* Agar judul mengambil ruang yang tersedia */
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 1.5rem;
+}
+
+header nav ul li a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: var(--accent-color);
+}
+
+/* Main content */
+main {
+    flex-grow: 1;
+    padding: 2rem 0;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-color-light);
+    padding: 4rem 1rem;
+    text-align: center;
+    border-radius: var(--border-radius-card);
+    margin: 0 auto 2rem; /* Margin di bagian atas agar tidak menempel ke header */
+    max-width: 1100px;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Tombol */
+.button {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.button.primary {
+    background-color: var(--accent-color);
+    color: var(--text-color-light);
+}
+
+.button.primary:hover {
+    background-color: #e06612; /* Sedikit lebih gelap dari accent */
+    transform: translateY(-2px);
+}
+
+.button.secondary {
+    background-color: #6B7280; /* Warna abu-abu netral */
+    color: var(--text-color-light);
+    margin-left: 1rem;
+}
+
+.button.secondary:hover {
+    background-color: #4B5563; /* Sedikit lebih gelap */
+    transform: translateY(-2px);
+}
+
+/* Card Styling */
+.card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius-card);
+    box-shadow: 0 4px 12px var(--shadow-light);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+/* Form Styling */
+.bmi-form-section .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem; /* Jarak antara card */
+    justify-content: center;
+}
+
+.bmi-form-section .card {
+    flex: 1;
+    min-width: 300px; /* Lebar minimum untuk card */
+    max-width: 500px;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color-dark);
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); /* Bayangan fokus */
+    outline: none;
+}
+
+.form-actions {
+    margin-top: 2rem;
+    text-align: right;
+}
+
+/* Hasil BMI */
+.result-card {
+    border: 2px solid var(--secondary-color); /* Border menonjol untuk hasil */
+    text-align: center;
+}
+
+.result-card h3 {
+    color: var(--secondary-color);
+}
+
+.result-card p {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+}
+
+.result-card strong {
+    color: var(--primary-color);
+}
+
+.bmi-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    display: block;
+    margin: 1rem 0;
+}
+
+.bmi-category {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+/* Warna kategori spesifik */
+.kekurangan-berat-badan {
+    background-color: #FCA5A5; /* Merah muda */
+    color: #991B1B;
+}
+
+.normal {
+    background-color: #A7F3D0; /* Hijau muda */
+    color: #047857;
+}
+
+.kelebihan-berat-badan {
+    background-color: #FCD34D; /* Kuning muda */
+    color: #92400E;
+}
+
+.obesitas {
+    background-color: #F87171; /* Merah */
+    color: #991B1B;
+}
+
+.input-tidak-valid {
+    background-color: #FECACA; /* Merah sangat muda */
+    color: #DC2626;
+}
+
+.recommendation {
+    font-style: italic;
+    color: #555;
+    margin-top: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* About BMI Section */
+.about-bmi .card {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+}
+
+.about-bmi ul {
+    list-style: inside;
+    margin: 1rem 0;
+    padding-left: 1rem;
+}
+
+.about-bmi li {
+    margin-bottom: 0.5rem;
+}
+
+/* Footer */
+footer {
+    background-color: var(--text-color-dark);
+    color: var(--text-color-light);
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header h1 {
+        margin-top: 0.5rem;
+        font-size: 1.3rem;
+    }
+
+    header nav ul {
+        margin-top: 1rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header nav ul li {
+        margin: 0.5rem 0;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .bmi-form-section .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-actions {
+        text-align: center;
+    }
+
+    .button.secondary {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 2rem 1rem;
+    }
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+    .bmi-value {
+        font-size: 2rem;
+    }
+    .bmi-category {
+        font-size: 1.2rem;
+    }
+    .card {
+        padding: 1.5rem;
+    }
+}

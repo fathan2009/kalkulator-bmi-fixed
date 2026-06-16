@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <!-- Menghubungkan file CSS eksternal untuk styling -->
+    <!-- url_for digunakan untuk menghasilkan URL ke file statis dengan benar -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <!-- Logo sederhana -->
+            <div class="logo">BMI</div>
+            <!-- Judul aplikasi -->
+            <h1>BMI Calculator</h1>
+            <nav>
+                <ul>
+                    <!-- Menu navigasi -->
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Tentang BMI</a></li>
+                    <li><a href="#calculator">Kalkulator</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Bagian Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <h2>Hitung BMI Anda dengan Mudah</h2>
+                <p>Indeks Massa Tubuh (BMI) adalah ukuran yang digunakan untuk menentukan kategori berat badan seseorang, apakah termasuk normal, kurang, lebih, atau obesitas.</p>
+                <a href="#calculator" class="button primary">Mulai Hitung</a>
+            </div>
+        </section>
+
+        <!-- Bagian Form Kalkulator BMI -->
+        <section id="calculator" class="bmi-form-section">
+            <div class="container">
+                <div class="card">
+                    <h3>Kalkulator BMI</h3>
+                    <!-- Form untuk input data BMI -->
+                    <!-- action="/" mengirim data ke rute utama yang sama -->
+                    <!-- method="POST" agar data dikirimkan di body request, tidak terlihat di URL -->
+                    <form action="/" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nama:</label>
+                            <!-- value="{{ name if name is not none else '' }}" untuk mempertahankan input setelah submit -->
+                            <input type="text" id="name" name="name" value="{{ name if name is not none else '' }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Jenis Kelamin:</label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Pilih</option>
+                                <!-- selected="{{ 'selected' if gender == 'Laki-laki' else '' }}" untuk mempertahankan pilihan setelah submit -->
+                                <option value="Laki-laki" {{ 'selected' if gender == 'Laki-laki' else '' }}>Laki-laki</option>
+                                <option value="Perempuan" {{ 'selected' if gender == 'Perempuan' else '' }}>Perempuan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Umur (tahun):</label>
+                             <input type="number" id="age" name="age" value="{{ age if age is not none else '' }}" required min="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">Berat Badan (kg):</label>
+                            <input type="number" id="weight" name="weight" step="0.1" value="{{ weight if weight is not none else '' }}" required min="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label for="height">Tinggi Badan (cm):</label>
+                            <input type="number" id="height" name="height" step="0.1" value="{{ height if height is not none else '' }}" required min="0.1">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="button primary">Hitung BMI</button>
+                            <button type="reset" class="button secondary">Reset</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Bagian Hasil BMI -->
+                {% if bmi is not none %}
+                <div class="card result-card">
+                    <h3>Hasil BMI Anda</h3>
+                    <p>Halo, <strong>{{ name }}</strong>!</p>
+                    <p>BMI Anda adalah: <span class="bmi-value">{{ "%.2f"|format(bmi) }}</span></p>
+                    <p>Kategori: <span class="bmi-category {{ category|lower|replace(' ', '-') }}">{{ category }}</span></p>
+                    <p class="recommendation">{{ recommendation }}</p>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+
+        <!-- Bagian Tentang BMI -->
+        <section id="about" class="about-bmi">
+            <div class="container">
+                <div class="card">
+                    <h3>Tentang Indeks Massa Tubuh (BMI)</h3>
+                    <p>Indeks Massa Tubuh (BMI) adalah pengukuran yang menggunakan tinggi dan berat badan Anda untuk menghitung apakah berat badan Anda sehat relatif terhadap tinggi badan Anda. Ini adalah alat skrining yang umum untuk mengetahui masalah berat badan dalam populasi.</p>
+                    <p>Meskipun BMI adalah indikator yang berguna bagi kebanyakan orang, penting untuk diingat bahwa itu tidak secara langsung mengukur lemak tubuh. Faktor lain seperti komposisi tubuh, usia, jenis kelamin, dan etnis juga dapat memengaruhi interpretasi BMI.</p>
+                    <p>Kategori BMI umum adalah:</p>
+                    <ul>
+                        <li>Kurang dari 18.5: Kekurangan Berat Badan</li>
+                        <li>18.5 - 24.9: Normal</li>
+                        <li>25 - 29.9: Kelebihan Berat Badan</li>
+                        <li>30 atau lebih: Obesitas</li>
+                    </ul>
+                    <p>Selalu konsultasikan dengan profesional kesehatan untuk interpretasi yang akurat dan saran medis terkait berat badan Anda.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 BMI Calculator. Dibuat oleh Radit & Fathan</p>
+        </div>
+    </footer>
+</body>
+</html>
